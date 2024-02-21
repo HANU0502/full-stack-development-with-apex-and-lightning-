@@ -1,0 +1,29 @@
+<template>
+    <!-- header -->
+    <div class="slds-modal__header slds-text-heading_large slds-p-around_medium">Add Multiple Record</div>
+    
+   <lightning-button class="slds-text-align_left slds-p-around_medium" variant="brand" label="Add" onclick={handleAdd}></lightning-button>
+       
+    <template for:each={contacts} for:item="contact">
+        <div key={contact.tempId} class="slds-grid slds-wrap slds-p-around_medium">
+            <div class="slds-col slds-p-horizontal_medium">
+                <lightning-input type="text" variant="standard" label="Names"></lightning-input>
+            </div>
+            <div class="slds-col slds-p-horizontal_medium">
+                <lightning-input type="emai" variant="standard" label="Emails"></lightning-input>
+            </div>
+            <div class="slds-col slds-p-horizontal_medium">
+                <lightning-input type="text" variant="standard" label="Phones"></lightning-input>
+            </div>
+            <lightning-button-icon icon-name="utility:delete" variant="brand" alternative-text="add"
+            class="slds-m-left_xx-small" title="Save" onclick={handleDelete}></lightning-button-icon>
+        </div>
+    </template>
+    
+
+    <!-- footer -->
+    <div class="slds-modal__footer slds-text-align_right">
+        <lightning-button label="Submit" name="submit" variant="brand"></lightning-button>
+    </div>
+
+</template>

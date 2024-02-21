@@ -1,0 +1,10 @@
+<template>
+    <lightning-datatable
+                key-field="Id"
+                data={contact.data}
+                columns={COLUMNS}>
+           </lightning-datatable>
+           <template if:true={errors}>
+            <p>{errors}</p>
+        </template>
+</template>

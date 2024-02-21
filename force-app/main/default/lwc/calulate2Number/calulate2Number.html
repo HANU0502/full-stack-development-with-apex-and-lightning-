@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Calculate Example">
+        <lightning-button label="Submit" slot="actions" onclick={handleClick}></lightning-button>
+        <p class="slds-p-horizontal_small">
+            <lightning-input type="number" value="fNum" name="fNum" label="Enter first Number" onchange={handleChange}></lightning-input>
+            <lightning-input type="number" value="SNum" name="SNum" label="Enter Second Number" onchange={handleChange}></lightning-input>
+        </p>
+        <div>
+            <lightning-button label="Add" slot="actions" onclick={handleClick}></lightning-button>
+            <lightning-button label="substract" slot="actions" onclick={handleClick}></lightning-button>
+            <lightning-button label="Mutiply" slot="actions" onclick={handleClick}></lightning-button>
+            <lightning-button label="divide" slot="actions" onclick={handleClick}></lightning-button>
+        </div>
+        <template if:true={sum}>
+            Addition : {sum}
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,9 @@
+<template>
+    <lightning-card title="Passing the value form Child to parent in lwc">
+        <div class="slds-grid slds-wrap slds-var-p-around_medium">
+            <h3>This is child compoent</h3>
+            <c-dispatch-child ondemoevent={handleChange}></c-dispatch-child>
+            <p>Value =>  {currentVal}</p>
+        </div>
+    </lightning-card>
+</template>
