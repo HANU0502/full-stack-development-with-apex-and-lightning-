@@ -1,4 +1,6 @@
 import { LightningElement,api } from 'lwc';
+import saveTodo from '@salesforce/apex/TodoController.saveTodo';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class CreateTask extends LightningElement {
     @api targetParent;
@@ -27,6 +29,33 @@ export default class CreateTask extends LightningElement {
                 console.log('taskTitle', this.taskTitle)
                 break;
         }
+    }
+
+    @api
+    saveTask(){
+        console.log('#### Button clicked on child');
+        saveTodo({title :this.taskTitle,dueDate : this.dueDate})
+        .then(data =>{
+            if(data){
+                console.log('result data'+JSON.stringify(data))
+                this.taskTitle = '';
+                this.dueDate = '';
+                this.showToast('Succees','Todo Has Been Created','success');
+            }
+                
+        })
+        .catch(error =>{
+            console.log('line 40'+error);
+        })
+    }
+
+    showToast(title,message,variant){
+        const event = new ShowToastEvent({
+            title:title,
+            message:message,
+            variant:variant
+        });
+        this.dispatchEvent(event);
     }
 
 }

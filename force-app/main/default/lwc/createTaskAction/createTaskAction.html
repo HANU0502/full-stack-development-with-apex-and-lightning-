@@ -1,10 +1,9 @@
 <template>
     <lightning-quick-action-panel header="Task Manager">
-        <c-create-task target-parent={isAction}></c-create-task>
+        <c-create-task lwc:ref="createTodo" target-parent={isAction} onsave={saveTask}></c-create-task>
         <div slot="footer">
             <lightning-button variant="neutral" class="slds-m-right_x-small" label="Cancel" onclick={closeAction}></lightning-button>
             <lightning-button variant="neutral" label="Save" onclick={handleOnClick}></lightning-button>
         </div>
-        <div slot="footer"></div>
     </lightning-quick-action-panel>
 </template>
