@@ -1,3 +1,32 @@
 <template>
-    
+    <lightning-card title={pageTitle} icon-name="standard:task">
+        <template lwc:if={todoList}>
+            <div class="slds-m-around_medium">
+                <template for:each={todoList} for:item="todo">
+                    <lightning-layout key={todo.Id} class="slds-box slds-m-around_medium custom-box">
+                        <lightning-layout-item size="11" padding="around-small">
+                            <b>
+                                Task : {todo.Title__c}
+                                <br/>
+                                Due Date : : {todo.Due_Date__c}
+                            </b>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="1" padding="around-small">
+                            <template lwc:if={showButton}>
+                                <lightning-button-icon icon-name="standard:task2" onclick={handleClick} alternative-text="Click to Complete task" data-record-id={todo.Id}></lightning-button-icon>
+                            </template>
+                            <template lwc:else>
+                                <lightning-button-icon icon-name="utility:delete" alternative-text="Delete" onclick={handleDelete} class="slds-m-left_xx-small" data-record-id={todo.Id}></lightning-button-icon>
+                            </template>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+            </div>
+        </template>
+        <template lwc:else>
+            <div class="slds-m-around_medium">
+                <lightning-layout class="slds-box slds-m-around_medium custom-box">No Task </lightning-layout>
+            </div>
+        </template>
+    </lightning-card>
 </template>

@@ -34,19 +34,23 @@ export default class CreateTask extends LightningElement {
     @api
     saveTask(){
         console.log('#### Button clicked on child');
-        saveTodo({title :this.taskTitle,dueDate : this.dueDate})
-        .then(data =>{
-            if(data){
-                console.log('result data'+JSON.stringify(data))
-                this.taskTitle = '';
-                this.dueDate = '';
-                this.showToast('Succees','Todo Has Been Created','success');
-            }
-                
-        })
-        .catch(error =>{
-            console.log('line 40'+error);
-        })
+        if(this.taskTitle && this.dueDate)
+            saveTodo({title :this.taskTitle,dueDate : this.dueDate})
+            .then(data =>{
+                if(data){
+                    console.log('result data'+JSON.stringify(data))
+                    this.taskTitle = '';
+                    this.dueDate = '';
+                    this.showToast('Succees','Todo Has Been Created','success');
+                    this.dispatchEvent(new CustomEvent('refreshtodo'));
+                }
+                    
+            })
+            .catch(error =>{
+                console.log('line 40'+error);
+            }) 
+        else
+            this.showToast('Error','Missing Required Field','error');
     }
 
     showToast(title,message,variant){
